@@ -1,3 +1,4 @@
 **/node_modules
 **/.next
 ./backend/data
+**/.DS_Store
