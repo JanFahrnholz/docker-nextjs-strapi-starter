@@ -1,0 +1,46 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./
+      dockerfile: frontend.dev.Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/var/www/
+      - ./frontend:/usr/src/app/
+      - ./frontend/node_modules:/usr/src/app/node_modules
+      - ./frontend/.next:/usr/src/app/.next
+    depends_on:
+      - backend
+    networks:
+      - app
+
+  backend:
+    build:
+      context: ./
+      dockerfile: backend.dev.Dockerfile
+    volumes:
+      - ./backend/app:/srv/app
+    ports:
+      - '1337:1337'
+    depends_on:
+      - db
+    networks:
+      - app
+
+  db:
+    image: mariadb
+    volumes:
+      - ./backend/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: backend
+      MYSQL_USER: strapi
+      MYSQL_PASSWORD: strapi
+    networks:
+      - app
+
+networks:
+  app:
