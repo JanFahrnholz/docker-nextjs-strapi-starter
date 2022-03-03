@@ -21,6 +21,7 @@ services:
     build:
       context: ./
       dockerfile: backend.dev.Dockerfile
+    restart: always
     volumes:
       - ./backend/app:/srv/app
     ports:
@@ -34,6 +35,7 @@ services:
     image: mariadb
     volumes:
       - ./backend/data:/var/lib/mysql
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: backend
