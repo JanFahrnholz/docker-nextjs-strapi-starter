@@ -4,8 +4,8 @@ RUN mkdir -p /var/www/
 WORKDIR /var/www/
 
 COPY ./frontend /var/www/
-RUN npm i
+
+RUN npm install
 RUN npm run build
 
-# Running the app
-CMD ["npm", "run", "dev"]
+CMD "npm" "run" "dev"
