@@ -19,39 +19,28 @@ services:
 
   backend:
     build:
-      context: ./backend
+      context: ./
       dockerfile: backend.dev.Dockerfile
     restart: always
-    # INFO: Mapping breaks node_modules
     volumes:
-      - ./backend:/srv/backend
+      - ./backend/app:/srv/app
     ports:
       - '1337:1337'
-    environment:
-      DATABASE_CLIENT: mysql
-      DATABASE_HOST: mariadb
-      DATABASE_PORT: 3306
-      DATABASE_NAME: strapi
-      DATABASE_USERNAME: root
-      DATABASE_PASSWORD: root
-      DATABASE_SSL: 'false'
     depends_on:
-      - mariadb
+      - db
     networks:
       - app
 
-  mariadb:
-    image: mariadb:10.2.7
-    restart: always
+  db:
+    image: mariadb
     volumes:
-      - ./data:/var/lib/mysql
+      - ./backend/data:/var/lib/mysql
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: strapi
+      MYSQL_DATABASE: backend
       MYSQL_USER: strapi
       MYSQL_PASSWORD: strapi
-    ports:
-      - "3306:3306"
     networks:
       - app
 

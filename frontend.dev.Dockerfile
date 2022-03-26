@@ -5,7 +5,7 @@ WORKDIR /var/www/
 
 COPY ./frontend /var/www/
 
-RUN npm install --platform=linux --arch=x64
+RUN npm install
 RUN npm run build
 
 CMD "npm" "run" "dev"
