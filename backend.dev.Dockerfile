@@ -1,11 +1,12 @@
-FROM node:12
+FROM strapi/base
 
-RUN mkdir -p /var/www/
-WORKDIR /var/www/
+WORKDIR /app
 
-COPY ./backend /var/www/
+COPY ./backend/package*.json .
+RUN npm ci
 
-RUN npm install
+COPY ./backend .
+
 RUN npm run build
 
 CMD "npm" "run" "develop"

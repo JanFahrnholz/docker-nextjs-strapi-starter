@@ -5,7 +5,7 @@ WORKDIR /var/www/
 
 COPY ./frontend /var/www/
 
-RUN npm install
+RUN npm ci
 RUN npm run build
 
 CMD "npm" "run" "dev"
