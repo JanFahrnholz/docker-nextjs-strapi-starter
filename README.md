@@ -1,21 +1,22 @@
-# docker-nextjs-tailwind-strapi-starter
+# A Docker, Next JS, TailwindCSS and Strapi boilerplate
+
 This is a simple starter project featuring docker, next, tailwind css and strapi
 
-# Requirements
+## Requirements
 
-- Docker / Docker-compose
-- npm
+- `Docker / Docker-compose`
+- `npm`
 
-# Getting started
+## Getting started
 
 Just clone the repository and run `init.sh`
 
+After the build process is finished, visit [`localhost:3000`](http://localhost:3000)
+
 NextJS (including Tailwind) is located under `./frontend` and Strapi v4 under `./backend`
 
----
-
-# Todo
+## Todo
 
 - [x] ~create dev enviroment~ 
-- [ ] add typesript
+- [x] ~add typesript~
 - [ ] add production enviroment
